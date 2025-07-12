@@ -10,6 +10,7 @@ export default class LatestPoll extends Component {
     @tracked title = "";
     @tracked show = false;
     @tracked login = false;
+    @tracked topic = ""
     
     
 
@@ -54,6 +55,13 @@ export default class LatestPoll extends Component {
     
     }
 
+    async getTopic(topicId) {
+        const response = await fetch(`/t/${topicId}.json`);
+        const data = await response.json();
+        console.log(data)
+        return "Test"
+    }
+
     constructor() {
         super(...arguments);
         this.loadEvents(); 
@@ -93,22 +101,14 @@ export default class LatestPoll extends Component {
           //this.pollImg = settings.poll_img;
           this.title = settings.title;
 
-        
-          // Get
-          /*const resp = await fetch(settings.url, 
-            { 
-              method: "GET",
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-              } }
-          );
-          const respData = await resp.json();
-          if(respData.success){
-            this.polls = respData.data;
-          }*/
-
           this.login = this.checkLogin();
+        
+          if(settings.topic_id !== 0){
+            this.topic = this.getTopic(settings.topic_id);
+          }
+          
+
+
 
           
           
