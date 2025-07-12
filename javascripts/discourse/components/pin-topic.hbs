@@ -1,27 +1,9 @@
 <div id='above-pin-topic'></div>
 {{#if this.showOnRoute}}
-<div class='latest-poll__wrapper {{this.settings.plugin_outlet}}'>
+<div class='pin-topic__wrapper {{this.settings.plugin_outlet}}'>
     <h2>{{this.title}}</h2>
-    <div class='latest-poll__list'>
-        {{#each this.polls as |p|}}
-        <div class='latest-poll__listitem'>
-            <div class='latest-poll__listitem_heading'>
-                <img width="24px" height="24px" src="{{this.pollImg}}"/>
-                <a href="/t/{{p.topic_id}}"><h4>{{p.title}}</h4></a>
-            </div>
-        
-            <div class='latest-poll__listitem_footer'>
-                <div class="latest-poll__listitem_footer_start">
-                    <img width="24px" height="24px" class="avatar" src="https://connect.efinancethai.com/{{p.avatar_url}}" alt="{{p.username}}"/>
-                    <span class="username">{{p.username}}</span>
-                </div>
-                <div class="datetime">{{p.created_at}}</div>
-            </div>
-        </div>
-        {{/each}}
-
-        
-
+    <div class='pin-topic__list'>
+ 
     </div>
 </div>
 {{/if}}
