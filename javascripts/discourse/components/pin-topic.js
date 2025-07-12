@@ -9,6 +9,7 @@ export default class LatestPoll extends Component {
     @tracked pollImg = "";
     @tracked title = "";
     @tracked show = false;
+    @tracked login = false
     
     
 
@@ -17,15 +18,7 @@ export default class LatestPoll extends Component {
       return /Mobi|Android/i.test(navigator.userAgent);
     }
   
-    @computed
-    get isLogin() {
-        try {
-            return this.checkLogin();
-        }catch(ex){
-            return false
-        }
-        
-    }
+    
 
     async checkLogin() {
         try {
@@ -112,6 +105,8 @@ export default class LatestPoll extends Component {
           if(respData.success){
             this.polls = respData.data;
           }*/
+
+          this.login = this.checkLogin();
 
           
           
