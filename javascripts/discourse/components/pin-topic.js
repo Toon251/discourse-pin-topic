@@ -23,19 +23,34 @@ export default class LatestPoll extends Component {
     }
 
     async checkLogin() {
-        try{
-            const response1 = await fetch(`/session/current.json`);
-            const data1 = await response1.json();
-            console.log(data1);
-            if(data1.current_user){
-                return true
-            }else{
-                return false
+        try {
+            const response = await fetch(`/session/current.json`);
+            
+            // Check specifically for 404 error
+            if (response.status === 404) {
+                console.error('Endpoint not found (404)');
+                return false;
             }
-        } catch(e){
-            return false
+            
+            // Check for other HTTP errors
+            if (!response.ok) {
+                console.error(`HTTP error! status: ${response.status}`);
+                return false;
+            }
+            
+            const data = await response.json();
+            console.log('Session data:', data);
+            
+            if (data.current_user) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (error) {
+            console.error('Login check error:', error);
+            return false;
         }
-        
     
     }
 
