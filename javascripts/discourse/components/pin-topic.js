@@ -11,6 +11,7 @@ export default class LatestPoll extends Component {
     @tracked show = false;
     @tracked login = false;
     @tracked topic = null;
+    @tracked cooked = "";
     
     
 
@@ -27,20 +28,20 @@ export default class LatestPoll extends Component {
             
             // Check specifically for 404 error
             if (response.status === 404) {
-                console.error('Endpoint not found (404)');
+                //console.error('Endpoint not found (404)');
                 this.login = false;
                 return false;
             }
             
             // Check for other HTTP errors
             if (!response.ok) {
-                console.error(`HTTP error! status: ${response.status}`);
+                //console.error(`HTTP error! status: ${response.status}`);
                 this.login = false;
                 return false;
             }
             
             const data = await response.json();
-            console.log('Session data:', data);
+            //console.log('Session data:', data);
             
             if (data.current_user) {
                 return true;
@@ -60,6 +61,9 @@ export default class LatestPoll extends Component {
         const data = await response.json();
         this.topic = data;
         console.log(data)
+        if(data){
+            this.cooked = data.post_stream?.posts[0].cooked;
+        }
         //this.fancy_title = data.fancy_title;
         //this.cooked = data.post_stream.posts[0].cooked;
 
