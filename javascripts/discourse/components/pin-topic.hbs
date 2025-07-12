@@ -4,7 +4,9 @@
 <div class='pin-topic__wrapper {{this.settings.plugin_outlet}}'>
     <h2>{{this.title}}</h2>
     <div class='pin-topic__list'>
-        
+        {{#if this.fancy_title}}
+            {{this.fancy_title}}
+        {{/if}}
     </div>
 </div>
 {{/if}}

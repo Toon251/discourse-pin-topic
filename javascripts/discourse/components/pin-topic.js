@@ -10,7 +10,8 @@ export default class LatestPoll extends Component {
     @tracked title = "";
     @tracked show = false;
     @tracked login = false;
-    @tracked topic = ""
+    @tracked fancy_title = "";
+    @tracked cooked = "";
     
     
 
@@ -58,8 +59,9 @@ export default class LatestPoll extends Component {
     async getTopic(topicId) {
         const response = await fetch(`/t/${topicId}.json`);
         const data = await response.json();
-        console.log(data)
-        return "Test"
+        this.fancy_title = data.fancy_title;
+        this.cooked = data.post_stream.posts[0].cooked;
+
     }
 
     constructor() {
@@ -104,7 +106,7 @@ export default class LatestPoll extends Component {
           this.login = this.checkLogin();
         
           if(settings.topic_id !== 0){
-            this.topic = this.getTopic(settings.topic_id);
+            this.getTopic(settings.topic_id);
           }
           
 
