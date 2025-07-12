@@ -9,7 +9,7 @@ export default class LatestPoll extends Component {
     @tracked pollImg = "";
     @tracked title = "";
     @tracked show = false;
-    @tracked login = false
+    @tracked login = false;
     
     
 
