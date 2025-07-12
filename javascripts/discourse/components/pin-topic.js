@@ -19,7 +19,12 @@ export default class LatestPoll extends Component {
   
     @computed
     get isLogin() {
-        return this.checkLogin();
+        try {
+            return this.checkLogin();
+        }catch(ex){
+            return false
+        }
+        
     }
 
     async checkLogin() {
