@@ -63,7 +63,7 @@ export default class LatestPoll extends Component {
         console.log(data)
         if(data){
              
-            //this.cooked = data.post_stream?.posts[0].cooked;
+            this.cooked = data.post_stream?.posts[0].cooked;
             this.cooked = this.cooked.replace(/<p[^>]*>/, '');
         }
         //this.fancy_title = data.fancy_title;
