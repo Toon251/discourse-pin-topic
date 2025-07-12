@@ -10,6 +10,7 @@ export default class LatestPoll extends Component {
     @tracked title = "";
     @tracked show = false;
     
+    
 
     @computed
     get isMobile() {
@@ -24,6 +25,7 @@ export default class LatestPoll extends Component {
     async checkLogin() {
         const response1 = await fetch(`/session/current.json`);
         const data1 = await response1.json();
+        console.log(data1);
         if(data1.current_user){
             return true
         }else{
@@ -34,7 +36,7 @@ export default class LatestPoll extends Component {
 
     constructor() {
         super(...arguments);
-        // this.loadEvents(); 
+        this.loadEvents(); 
         
     }
 
@@ -68,12 +70,12 @@ export default class LatestPoll extends Component {
           //username = data1.current_user.username
 
 
-          this.pollImg = settings.poll_img;
+          //this.pollImg = settings.poll_img;
           this.title = settings.title;
 
         
           // Get
-          const resp = await fetch(settings.url, 
+          /*const resp = await fetch(settings.url, 
             { 
               method: "GET",
               headers: {
@@ -84,9 +86,9 @@ export default class LatestPoll extends Component {
           const respData = await resp.json();
           if(respData.success){
             this.polls = respData.data;
-          }
+          }*/
 
-          //console.log(this.polls)
+          
           
 
         } catch (error) {
