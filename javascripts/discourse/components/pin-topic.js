@@ -23,14 +23,19 @@ export default class LatestPoll extends Component {
     }
 
     async checkLogin() {
-        const response1 = await fetch(`/session/current.json`);
-        const data1 = await response1.json();
-        console.log(data1);
-        if(data1.current_user){
-            return true
-        }else{
+        try{
+            const response1 = await fetch(`/session/current.json`);
+            const data1 = await response1.json();
+            console.log(data1);
+            if(data1.current_user){
+                return true
+            }else{
+                return false
+            }
+        } catch(e){
             return false
         }
+        
     
     }
 
