@@ -27,12 +27,14 @@ export default class LatestPoll extends Component {
             // Check specifically for 404 error
             if (response.status === 404) {
                 console.error('Endpoint not found (404)');
+                this.login = false;
                 return false;
             }
             
             // Check for other HTTP errors
             if (!response.ok) {
                 console.error(`HTTP error! status: ${response.status}`);
+                this.login = false;
                 return false;
             }
             
