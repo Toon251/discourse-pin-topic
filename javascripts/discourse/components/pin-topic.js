@@ -9,12 +9,29 @@ export default class LatestPoll extends Component {
     @tracked pollImg = "";
     @tracked title = "";
     @tracked show = false;
+    
 
     @computed
     get isMobile() {
       return /Mobi|Android/i.test(navigator.userAgent);
     }
   
+    @computed
+    get isLogin() {
+        return this.checkLogin();
+    }
+
+    async checkLogin() {
+        const response1 = await fetch(`/session/current.json`);
+        const data1 = await response1.json();
+        if(data1.current_user){
+            return true
+        }else{
+            return false
+        }
+    
+    }
+
     constructor() {
         super(...arguments);
         // this.loadEvents(); 
